@@ -1,0 +1,43 @@
+# FastAPI + nginx (React SPA). Database: MongoDB Atlas (or any reachable Mongo URI).
+# Usage:
+#   cp compose.env.example .env
+#   Set MONGODB_URI to your Atlas connection string (and JWT_SECRET).
+#   docker compose up --build
+# App: http://localhost:8080  (API + WS proxied under same host)
+
+services:
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      MONGODB_URI: "${MONGODB_URI:?Set MONGODB_URI in .env (see compose.env.example for Atlas)}"
+      DATABASE_NAME: ${DATABASE_NAME:-taskboard}
+      JWT_SECRET: ${JWT_SECRET:-change-me-generate-a-long-random-string}
+      JWT_ALGORITHM: ${JWT_ALGORITHM:-HS256}
+      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-10080}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080,http://127.0.0.1:8080,http://localhost,http://127.0.0.1}
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+    expose:
+      - "8000"
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health').read()",
+        ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 45s
+
+  frontend:
+    build: ./frontend
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"

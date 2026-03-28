@@ -1,0 +1,19 @@
+# Python
+backend/.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Environment & secrets (never commit; keep *.example tracked)
+.env
+.env.*
+!**/.env.example
+
+# Node / frontend build
+frontend/node_modules/
+frontend/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db

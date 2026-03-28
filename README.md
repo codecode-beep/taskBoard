@@ -90,7 +90,3 @@ On the board, use the **✦** floating button or **✦ Neural** on a task to ope
 2. Create a board (columns are created automatically).
 3. Add tasks, optionally labels (`+ Label`), invite teammates (**Invite**).
 4. Open **Analytics** or **Export JSON** from the board header as needed.
-
-## License
-
-MIT (or your choice—this sample repo ships without a formal license file unless you add one).

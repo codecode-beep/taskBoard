@@ -1,0 +1,15 @@
+# Build context = repo root (see /Dockerfile)
+.git
+.github
+frontend/node_modules
+frontend/dist
+backend/.venv
+backend/__pycache__
+backend/**/__pycache__
+**/*.pyc
+**/.env
+!**/.env.example
+.pytest_cache
+*.md
+.DS_Store
+compose.env.example

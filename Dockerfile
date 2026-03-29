@@ -3,6 +3,11 @@
 
 FROM python:3.12-slim
 
+# CA bundle for TLS to MongoDB Atlas (slim image omits it; fixes SSL handshake errors)
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/* \
+    && update-ca-certificates
+
 WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1 \

@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 60 * 24 * 7
     cors_origins: str = "http://localhost:5173"
+    # Starlette matches request Origin against this regex (e.g. all Vercel preview/prod URLs).
+    # Set to empty to disable. Still list explicit origins in cors_origins for localhost, etc.
+    cors_origin_regex: str = r"https://.*\.vercel\.app"
     google_api_key: str = ""
     gemini_model: str = "gemini-2.5-flash"
 

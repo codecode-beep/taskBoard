@@ -4,7 +4,7 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.config import cors_origin_list
+from app.config import cors_origin_list, get_settings
 from app.core.exceptions import AppHTTPException
 from app.db.connection import close_mongo, connect_mongo, get_database
 from app.routers import activity, ai, auth, boards, columns, comments, labels, notifications, tasks, users
@@ -31,9 +31,12 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Task Board API", lifespan=lifespan)
 
+_settings = get_settings()
+_cors_regex = (_settings.cors_origin_regex or "").strip()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origin_list(),
+    allow_origin_regex=_cors_regex if _cors_regex else None,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -55,6 +58,11 @@ app.include_router(comments.router, prefix="/api/v1")
 app.include_router(activity.router, prefix="/api/v1")
 app.include_router(notifications.router, prefix="/api/v1")
 app.include_router(ai.router, prefix="/api/v1")
+
+
+@app.get("/")
+async def root():
+    return {"service": "task-board-api", "health": "/health", "docs": "/docs"}
 
 
 @app.get("/health")

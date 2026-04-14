@@ -2,7 +2,7 @@
 
 A lightweight Kanban-style task manager inspired by Azure DevOps Boards. The project is split into two applications: a **FastAPI** backend with **MongoDB** (Motor) and a **React** (Vite + TypeScript) frontend. Together they support shared boards, roles, drag-and-drop, comments, activity history, in-app notifications, and optional live updates over WebSockets.
 
-**Live app (Vercel):** `https://task-board-seven-gamma.vercel.app/login`
+**Live app (Vercel):** `https://task-board-seven-gamma.vercel.app/`
 
 ## Architecture
 

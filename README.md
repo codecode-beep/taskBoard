@@ -4,6 +4,47 @@ A lightweight Kanban-style task manager inspired by Azure DevOps Boards. The pro
 
 **Live app (Vercel):** `https://task-board-seven-gamma.vercel.app/`
 
+## Screenshots
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/signin.png" alt="Sign in" width="100%" />
+      <br /><sub>Sign in</sub>
+    </td>
+    <td width="50%">
+      <img src="screenshots/signup.png" alt="Create account" width="100%" />
+      <br /><sub>Create account</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/homePage.png" alt="Home — boards list" width="100%" />
+      <br /><sub>Home — boards list</sub>
+    </td>
+    <td width="50%">
+      <img src="screenshots/taskBoard.png" alt="Kanban board" width="100%" />
+      <br /><sub>Kanban board</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/editTask.png" alt="Edit task panel" width="100%" />
+      <br /><sub>Edit task panel</sub>
+    </td>
+    <td width="50%">
+      <img src="screenshots/inviteUser.png" alt="Invite teammate" width="100%" />
+      <br /><sub>Invite teammate</sub>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
+      <img src="screenshots/neuralAssist.png" alt="Neural assist (AI)" width="50%" />
+      <br /><sub>Neural assist (AI)</sub>
+    </td>
+  </tr>
+</table>
+
 ## Architecture
 
 ### Backend (`backend/`)
